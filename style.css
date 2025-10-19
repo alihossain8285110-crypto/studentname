@@ -1,14 +1,14 @@
 :root {
   --primary: #4f46e5;
-  --secondary: #6366f1;
+  --secondary: #1c1eb3;
   --accent: #f43f5e;
   --background: #0f172a;
   --surface: #1e293b;
   --text: #f8fafc;
-  --glass: rgba(255, 255, 255, 0.1);
+  --glass: rgba(141, 99, 99, 0.1);
 }
 
-/* Core animations */
+ 
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -31,7 +31,7 @@
   50% { transform: translateY(-10px); }
 }
 
-/* Modern styling */
+ 
 body {
   background: var(--background);
   color: var(--text);
@@ -75,6 +75,7 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   margin: 1.5rem 0;
+  border: solid 3PX rgb(211, 193, 216);
 }
 
 th {
@@ -85,10 +86,11 @@ th {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
+  text-decoration: underline;
 }
 
 td {
-  padding: 1rem;
+  padding: 0.7rem 1rem;
   transition: all 0.3s ease;
   border-bottom: 1px solid var(--glass);
 }
@@ -102,7 +104,7 @@ tr:hover {
   transform: scale(1.02);
 }
 
-/* Modern text effects */
+ 
 h1, h2 {
   background: linear-gradient(90deg, var(--text), var(--secondary));
   -webkit-background-clip: text;
@@ -110,8 +112,7 @@ h1, h2 {
   color: transparent;
   font-weight: 800;
 }
-
-/* Smooth scrolling */
+ 
 html {
   scroll-behavior: smooth;
 }
@@ -124,7 +125,7 @@ html {
   }
 }
 
-/* Loading animation */
+ 
 .loading {
   opacity: 0;
   transition: opacity 0.5s ease-in;
@@ -134,14 +135,14 @@ html {
   opacity: 1;
 }
 
-/* Glass morphism effects */
+ 
 .glass {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Modern button styles */
+ 
 button {
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   border: none;
@@ -170,4 +171,99 @@ button:hover {
   text-align: right;
 }
 
+/* Add these new styles */
+.student-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
+.student-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+    transition: transform 0.3s ease;
+}
+
+td:hover .student-avatar {
+    transform: scale(1.2);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+/* title block: keep text slightly left, logo on the right */
+.title-container {
+    text-align: left;
+    order: 1;
+}
+
+/* make logo round, larger, and add subtle fading animation */
+.portal-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    transition: transform 0.35s ease, border-color 0.25s ease;
+    order: 2; /* keeps logo to the right of title */
+    animation: logoFade 4s ease-in-out infinite;
+}
+
+/* hover gives a gentle pop */
+.portal-logo:hover {
+    transform: scale(1.06) rotate(-6deg);
+    border-color: rgba(255,255,255,0.28);
+}
+
+/* fading + slight float */
+@keyframes logoFade {
+    0%   { opacity: 0; transform: translateY(-8px) scale(0.98); }
+    40%  { opacity: 1; transform: translateY(0) scale(1); }
+    60%  { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(8px) scale(0.98); }
+}
+
+/* Make heading and subtitle align nicely */
+.title-container h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    line-height: 1.05;
+    color: var(--text);
+}
+
+.subtitle {
+    margin: 6px 0 0;
+    font-size: 0.95rem;
+    color: rgba(248,250,252,0.85);
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 768px) {
+    .logo-title {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .title-container {
+        text-align: center;
+        order: 2;
+    }
+    .portal-logo {
+        order: 1;
+        width: 84px;
+        height: 84px;
+    }
+}
