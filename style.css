@@ -267,3 +267,98 @@ td:hover .student-avatar {
         height: 84px;
     }
 }
+
+/* === Cross-platform consistency & responsive scaling === */
+
+/* Reset / smoothing */
+* { box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+html, body { height: 100%; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+body { font-size: clamp(14px, 1.6vw, 16px); -webkit-text-size-adjust: 100%; }
+
+/* Layout container */
+:root {
+  --pad: 1rem;
+  --container-width: 1100px;
+}
+.header-content, .footer-content, main { max-width: var(--container-width); margin: 0 auto; padding: 0 var(--pad); }
+
+/* Logo and avatars scale consistently across devices */
+.portal-logo {
+  width: clamp(64px, 10vw, 140px);
+  height: clamp(64px, 10vw, 140px);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Student avatar responsive sizing */
+.student-avatar {
+  width: clamp(28px, 4.5vw, 44px);
+  height: clamp(28px, 4.5vw, 44px);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Tables: fixed layout for consistent column widths across devices */
+.table-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0.5rem;
+  overflow-x: auto;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate;
+}
+
+/* Prevent wrapping and keep text visible consistently */
+th, td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* Unified spacing and font sizing */
+th { padding: 1rem; font-size: 0.85rem; }
+td { padding: 0.75rem; font-size: 0.95rem; }
+
+/* Keep rows consistent height (touch-friendly) */
+tbody tr { height: 56px; }
+@media (max-width: 480px) {
+  tbody tr { height: 64px; } /* larger tap targets on phones */
+}
+
+/* Hide custom desktop cursor on touch devices (so native touch feels correct) */
+@media (hover: none) and (pointer: coarse) {
+  #custom-cursor-dot, #custom-cursor-ring { display: none !important; }
+  .portal-logo { transition: none; } /* avoid heavy animations on low-power devices */
+}
+
+/* Improve tap targets and touch behavior */
+a, button, th, td, .section-card {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(255,255,255,0.06);
+}
+
+/* Headings scale predictably */
+.title-container h1 { font-size: clamp(1.25rem, 4vw, 2.1rem); margin: 0; }
+.subtitle { font-size: clamp(0.85rem, 2.4vw, 1rem); }
+
+/* Accessible focus styles when keyboard navigation is used */
+.kbd-nav tbody tr:focus { outline: 3px solid rgba(99,102,241,0.22); outline-offset: 3px; }
+
+/* Reduce heavy animations on small screens for performance */
+@media (max-width: 768px) {
+  .section-card { animation: none; transform: none !important; }
+  tr:hover { transform: none; }
+}
+
+/* Ensure images render consistently */
+img { display: block; max-width: 100%; height: auto; }
+
+/* Small utility */
+.centered { display: flex; justify-content: center; align-items: center; }
