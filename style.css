@@ -39,6 +39,7 @@ body {
   line-height: 1.6;
   opacity: 0;
   animation: fadeInUp 0.8s ease-out forwards;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 header {
@@ -90,7 +91,10 @@ th {
 }
 
 td {
-  padding: 0.7rem 1rem;
+  padding: 1rem;
+  font-size: 16px; /* Fixed font size for better readability */
+  color: #ffffff; /* Ensure high contrast */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2); /* Better text visibility */
   transition: all 0.3s ease;
   border-bottom: 1px solid var(--glass);
 }
@@ -142,18 +146,7 @@ html {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
- 
-button {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 0.5rem;
-  color: white;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
+  
 button:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -171,100 +164,83 @@ button:hover {
   text-align: right;
 }
 
-/* Add these new styles */
+/* Update table container and table styles */
+.table-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0.5rem;
+    overflow-x: hidden; /* Hide horizontal scroll */
+}
+
+table {
+    width: 100%;
+    min-width: unset; /* Remove min-width */
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Adjust cell sizes for better mobile view */
+th, td {
+    padding: 8px;
+    font-size: 14px;
+    white-space: normal; /* Allow text to wrap */
+    text-align: left;
+    vertical-align: middle;
+    width: 25%; /* Equal width columns */
+}
+
 .student-info {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    min-width: auto; /* Remove fixed min-width */
 }
 
 .student-avatar {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--primary);
-    transition: transform 0.3s ease;
+    width: 32px;
+    height: 32px;
+    min-width: 32px; /* Ensure avatar doesn't shrink */
 }
 
-td:hover .student-avatar {
-    transform: scale(1.2);
-}
-
-.header-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
-}
-
-.logo-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-}
-
-/* title block: keep text slightly left, logo on the right */
-.title-container {
-    text-align: left;
-    order: 1;
-}
-
-/* make logo round, larger, and add subtle fading animation */
-.portal-logo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid rgba(255, 255, 255, 0.14);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-    transition: transform 0.35s ease, border-color 0.25s ease;
-    order: 2; /* keeps logo to the right of title */
-    animation: logoFade 4s ease-in-out infinite;
-}
-
-/* hover gives a gentle pop */
-.portal-logo:hover {
-    transform: scale(1.06) rotate(-6deg);
-    border-color: rgba(255,255,255,0.28);
-}
-
-/* fading + slight float */
-@keyframes logoFade {
-    0%   { opacity: 0; transform: translateY(-8px) scale(0.98); }
-    40%  { opacity: 1; transform: translateY(0) scale(1); }
-    60%  { opacity: 1; transform: translateY(0) scale(1); }
-    100% { opacity: 0; transform: translateY(8px) scale(0.98); }
-}
-
-/* Make heading and subtitle align nicely */
-.title-container h1 {
-    margin: 0;
-    font-size: 1.8rem;
-    line-height: 1.05;
-    color: var(--text);
-}
-
-.subtitle {
-    margin: 6px 0 0;
-    font-size: 0.95rem;
-    color: rgba(248,250,252,0.85);
-}
-
-/* Responsive: stack on small screens */
+/* Mobile-specific adjustments */
 @media (max-width: 768px) {
-    .logo-title {
-        flex-direction: column;
-        gap: 12px;
+    .student-info span {
+        font-size: 13px;
+        font-weight: 500;
+        display: block; /* Ensure name is visible */
     }
-    .title-container {
-        text-align: center;
-        order: 2;
+
+    td {
+        padding: 8px 4px;
     }
-    .portal-logo {
-        order: 1;
-        width: 84px;
-        height: 84px;
+
+    th {
+        font-size: 13px;
+        padding: 8px 4px;
+    }
+
+    /* Increase contrast for better visibility */
+    td {
+        color: #ffffff;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .student-avatar {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+    }
+
+    .student-info span {
+        font-size: 12px;
+    }
+
+    td:nth-child(2), td:nth-child(4) {
+        font-size: 12px; /* Smaller font for roll numbers */
     }
 }
 
@@ -282,6 +258,33 @@ body { font-size: clamp(14px, 1.6vw, 16px); -webkit-text-size-adjust: 100%; }
   --container-width: 1100px;
 }
 .header-content, .footer-content, main { max-width: var(--container-width); margin: 0 auto; padding: 0 var(--pad); }
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between title and logo */
+    gap: 2rem;
+    width: 100%;
+}
+
+.title-container {
+    flex: 1;
+}
+
+.portal-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
 
 /* Logo and avatars scale consistently across devices */
 .portal-logo {
@@ -306,12 +309,14 @@ body { font-size: clamp(14px, 1.6vw, 16px); -webkit-text-size-adjust: 100%; }
   margin: 0 auto;
   padding: 0.5rem;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
 }
 
 table {
-  table-layout: fixed;
+  min-width: 600px; /* Ensure minimum width for content */
   width: 100%;
   border-collapse: separate;
+  border-spacing: 0;
 }
 
 /* Prevent wrapping and keep text visible consistently */
@@ -324,7 +329,7 @@ th, td {
 
 /* Unified spacing and font sizing */
 th { padding: 1rem; font-size: 0.85rem; }
-td { padding: 0.75rem; font-size: 0.95rem; }
+td { padding: 12px 8px; font-size: 14px; font-weight: 500; }
 
 /* Keep rows consistent height (touch-friendly) */
 tbody tr { height: 56px; }
@@ -362,3 +367,116 @@ img { display: block; max-width: 100%; height: auto; }
 
 /* Small utility */
 .centered { display: flex; justify-content: center; align-items: center; }
+
+/* Mobile-only overrides: make layout and tables fit mobile screens (no horizontal scroll) */
+@media (max-width: 768px) {
+  /* container */
+  :root { --container-width: 100%; }
+  .header-content, .footer-content, main { max-width: 100%; padding: 0.75rem; }
+
+  /* Header: keep title and logo side-by-side when possible, otherwise compress nicely */
+  .logo-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+  }
+  .title-container {
+    flex: 1 1 auto;
+    text-align: left;
+    padding-right: 8px;
+  }
+  .title-container h1 {
+    font-size: 1.15rem;
+    line-height: 1.05;
+    margin: 0;
+    word-break: break-word;
+  }
+  .subtitle { font-size: 0.85rem; margin-top: 4px; opacity: 0.95; }
+
+  /* Logo: slightly smaller, fixed to the right, round */
+  .portal-logo {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 8px;
+    order: 2;
+    transition: transform .18s ease;
+  }
+
+  /* Table container: no horizontal scroll; full width */
+  .table-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0.25rem 0;
+    overflow-x: hidden; /* hide any horizontal scroll */
+  }
+
+  /* Table: remove desktop min-width, use fixed layout to keep columns proportional */
+  table {
+    width: 100% !important;
+    min-width: unset !important;
+    table-layout: fixed;
+    border-spacing: 0;
+    margin: 0.6rem 0;
+  }
+
+  /* Cells: allow wrapping and readable sizes */
+  th, td {
+    padding: 8px 10px;
+    font-size: 15px;
+    white-space: normal;        /* allow wrap */
+    overflow: visible;
+    text-overflow: clip;
+    vertical-align: middle;
+    width: auto;
+  }
+
+  /* Make avatar + name stack nicely and wrap name */
+  .student-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  .student-avatar {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+  .student-info span {
+    display: block;
+    white-space: normal;
+    word-break: break-word;
+    max-width: calc(100% - 48px);
+    font-weight: 600;
+  }
+
+  /* Rolls smaller and centered */
+  td:nth-child(2), td:nth-child(4) {
+    text-align: center;
+    width: 56px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* rows: auto height for wrapping */
+  tbody tr { height: auto; padding: 6px 0; }
+
+  /* Disable hover transforms on mobile for performance */
+  tr:hover { transform: none; }
+
+  /* Hide custom desktop cursor components on touch devices */
+  #custom-cursor-dot, #custom-cursor-ring { display: none !important; }
+
+  /* Ensure no global horizontal scrolling */
+  html, body { overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+
+  /* lighter animations on mobile */
+  .section-card { animation: none; transform: none !important; }
+}
