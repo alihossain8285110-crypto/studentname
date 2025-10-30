@@ -6,6 +6,8 @@
   --surface: #1e293b;
   --text: #f8fafc;
   --glass: rgba(141, 99, 99, 0.1);
+  --table-text: #ffffff;
+  --table-bg-card: rgba(255,255,255,0.02);
 }
 
  
@@ -480,3 +482,100 @@ img { display: block; max-width: 100%; height: auto; }
   /* lighter animations on mobile */
   .section-card { animation: none; transform: none !important; }
 }
+
+/* === Compatibility & mobile-first table fallback ===
+   - Ensures no horizontal scrollbar, clear contrast, font fallbacks
+   - Converts table to card-like rows on small screens (no scrolling)
+   - Hides custom desktop cursor on touch devices, preserves native touch UX
+*/
+:root {
+  --table-text: #ffffff;
+  --table-bg-card: rgba(255,255,255,0.02);
+}
+
+/* Browser-friendly text rendering & touch adjustments */
+html, body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+/* Remove any forced min-widths and ensure table is flexible */
+.table-container { overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+table { min-width: 0 !important; width: 100% !important; table-layout: auto; }
+
+/* Ensure readable color/contrast */
+th, td { color: var(--table-text); }
+
+/* Hide horizontal scrollbar on webkit while keeping vertical scroll */
+.table-container::-webkit-scrollbar { height: 8px; }
+.table-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 8px; }
+
+/* === Mobile: stack rows as cards to avoid horizontal scrolling === */
+@media (max-width: 560px) {
+  /* Collapse table header (accessible but hidden visually) */
+  thead { display: none; }
+
+  /* Make each row a card */
+  tbody, table { display: block; width: 100%; }
+  tbody tr {
+    display: grid;
+    grid-template-columns: 1fr 72px; /* name block + roll column */
+    gap: 10px;
+    align-items: center;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 12px;
+    background: var(--table-bg-card);
+    border: 1px solid rgba(255,255,255,0.04);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+    height: auto;
+  }
+
+  /* Left cell: avatar + name stacked cleanly */
+  tbody tr td:first-child {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+  }
+  .student-info span { font-size: 15px; line-height: 1.2; white-space: normal; word-break: break-word; }
+
+  /* Right cell(s) used for roll - compact and centered */
+  tbody tr td:nth-child(2),
+  tbody tr td:nth-child(4) {
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 0;
+  }
+
+  /* Hide any extra (third/fourth) name cells: instead show only first/roll pair visually */
+  /* If your table has both left and right name columns, keep both as separate rows by design,
+     or adjust buildRows to populate only name+roll pairs for mobile. */
+  tbody tr td { padding: 6px 4px; }
+
+  /* Make avatars consistent and non-shrinking */
+  .student-avatar { width: 44px; height: 44px; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.06); }
+
+  /* Disable hover transforms for touch devices */
+  tbody tr:hover { transform: none; box-shadow: 0 6px 18px rgba(0,0,0,0.28); }
+
+  /* ensure no horizontal scroll on very narrow devices */
+  html, body { overflow-x: hidden; }
+}
+
+/* Desktop and tablet: keep full table but ensure columns can wrap if needed */
+@media (min-width: 561px) {
+  th, td { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+}
+
+/* Hide custom cursor on touch devices for compatibility */
+@media (hover: none) and (pointer: coarse) {
+  #custom-cursor-dot, #custom-cursor-ring { display: none !important; }
+}
+
+/* Small accessibility tweaks */
+.kbd-nav tbody tr:focus { outline: 3px solid rgba(99,102,241,0.22); outline-offset: 3px; }

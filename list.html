@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>All Students — Student Directory</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="JAVE.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo-title">
+        <div class="title-container">
+          <h1>Student Directory — All Students</h1>
+          <p class="subtitle">Compact, readable list for mobile & desktop</p>
+        </div>
+        <img src="OIP.webp" alt="COLLEGE Logo" class="portal-logo">
+      </div>
+      <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:8px;">
+        <a href="index.html" class="hero-btn ghost">Back to Home</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section-card centered">
+      <!-- Responsive card list: JS builds table on index; this page contains card view so no horizontal scroll -->
+      <div class="cards-grid">
+        <!-- Example student card - duplicate/extend for all students or use JS to render -->
+        <article class="student-card">
+          <img class="student-avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=RIFAT" alt="RIFAT">
+          <div class="student-meta">
+            <h3>RIFAT</h3>
+            <p class="muted">Roll: 21 • Section C</p>
+          </div>
+        </article>
+
+        <article class="student-card">
+          <img class="student-avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=GALIB" alt="GALIB">
+          <div class="student-meta">
+            <h3>GALIB</h3>
+            <p class="muted">Roll: 01 • Section C</p>
+          </div>
+        </article>
+
+        <!-- Add other students similarly or let JAVE.js render cards dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p id="COPYRIGHT">&copy; 2024 Student Directory Portal</p>
+      <p class="creator">Developed by MD. AL KODOR RIFAT</p>
+    </div>
+  </footer>
+</body>
+
+</html>        </div>
+    </footer>
+</body>
+
+</html>
