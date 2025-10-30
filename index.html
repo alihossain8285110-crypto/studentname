@@ -1,0 +1,47 @@
+ <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Directory — Homepage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#6c8cff;--muted:#6b7280;--bg1:#f7f9fc;--bg2:#e9f1ff;--radius:16px;
+      font-family:'Inter',sans-serif;color-scheme:light;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      background:linear-gradient(180deg,var(--bg1),var(--bg2));
+      min-height:100vh;padding:0;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+      color:#1f2937;
+    }
+    header h1{font-size:36px;font-weight:800;color:var(--accent);margin-bottom:12px}
+    p{color:var(--muted);font-size:18px;margin-bottom:32px}
+    a.button{
+      display:inline-block;background:var(--accent);color:white;text-decoration:none;
+      padding:14px 28px;border-radius:var(--radius);font-weight:600;transition:transform .2s, box-shadow .2s;
+      box-shadow:0 6px 18px rgba(108,140,255,0.2);
+    }
+    a.button:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(108,140,255,0.3)}
+    footer{position:absolute;bottom:20px;color:var(--muted);font-size:14px}
+    .blob{
+      position:absolute;border-radius:50%;filter:blur(40px);mix-blend-mode:screen;opacity:0.7;pointer-events:none;
+      animation:float 8s ease-in-out infinite alternate;
+    }
+    .blob.b1{width:400px;height:400px;background:linear-gradient(180deg,#b7d7ff,#8fb8ff);top:-100px;left:-120px}
+    .blob.b2{width:300px;height:300px;background:linear-gradient(180deg,#ffd9e7,#ffc7a8);bottom:-100px;right:-100px;animation-duration:10s}
+    @keyframes float{from{transform:translateY(-20px)}to{transform:translateY(20px)}}
+  </style>
+</head>
+<body>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <header>
+    <h1>Welcome to the Student Directory</h1>
+    <p>Explore student lists by department. Organized, clean, and simple.</p>
+  </header>
+  <a class="button" href="list.html">Go to Student List</a>
+  <footer>© 2025 Student Directory</footer>
+</body>
+</html>

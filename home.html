@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Student Directory — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#6c8cff;--muted:#6b7280;--bg1:#f7f9fc;--bg2:#e9f1ff;--radius:18px;
+      font-family:'Inter',sans-serif;color-scheme:light;
+    }
+    *{box-sizing:border-box;margin:0;padding:20}
+    body{
+      background:linear-gradient(180deg,var(--bg1),var(--bg2));min-height:100vh;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#1f2937;
+    }
+    header h1{font-size:38px;font-weight:800;color:var(--accent);margin-bottom:12px}
+    p{color:var(--muted);font-size:18px;max-width:700px;margin:0 auto 24px}
+    a.button{
+      display:inline-block;background:var(--accent);color:white;text-decoration:none;
+      padding:14px 28px;border-radius:var(--radius);font-weight:600;transition:transform .2s, box-shadow .2s;
+      box-shadow:0 6px 18px rgba(108,140,255,0.2);
+    }
+    a.button:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(108,140,255,0.3)}
+    section{max-width:800px;background:white;border-radius:var(--radius);box-shadow:0 8px 30px rgba(0,0,0,0.05);
+      padding:40px 32px;margin-top:40px;text-align:left;animation:fadeIn 1s ease forwards;opacity:0;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    footer{margin-top:60px;color:var(--muted);font-size:14px}
+    .blob{
+      position:absolute;border-radius:50%;filter:blur(40px);mix-blend-mode:screen;opacity:0.7;pointer-events:none;
+      animation:float 8s ease-in-out infinite alternate;
+    }
+    .blob.b1{width:400px;height:400px;background:linear-gradient(180deg,#b7d7ff,#8fb8ff);top:-100px;left:-120px}
+    .blob.b2{width:300px;height:300px;background:linear-gradient(180deg,#ffd9e7,#ffc7a8);bottom:-100px;right:-100px;animation-duration:10s}
+    @keyframes float{from{transform:translateY(-20px)}to{transform:translateY(20px)}}
+  </style>
+</head>
+<body>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <header>
+    <h1>Welcome to Our Student Directory</h1>
+    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, aliquid aut assumenda ipsa expedita a illo nihil perspiciatis vel rem.</p>
+  </header>
+
+  <section>
+    <h2 style="color:var(--accent);margin-bottom:12px">About This Website</h2>
+    <p>This website is created to provide an organized and interactive view of student lists from various departments including Science, Arts, Commerce, and Engineering. Each section contains a categorized list of students with their respective details like Roll Number and Year.</p>
+    <p> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore eum voluptatum cumque, laudantium ut dicta deleniti ea ipsam iste eius ratione, consectetur minima optio animi pariatur, perferendis aspernatur quis nulla.</p>
+  </section>
+
+  <section>
+    <h2 style="color:var(--accent);margin-bottom:12px">Features</h2>
+    <ul style="line-height:1.8;color:var(--muted);">
+      <li>✅ Smooth navigation between section </li>
+      <list>✅ Clean and YMMY FORMAT</li>
+      <li>✅ Fully responsive layout for all devices</li>
+       
+    </ul>
+  </section>
+
+  <a class="button" href="list.html" style="margin-top:32px;">Go to Student List</a>
+  <footer>© 2025 Student Directory</footer>
+</body>
+</html>

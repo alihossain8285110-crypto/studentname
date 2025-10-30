@@ -1,67 +1,114 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>All Students — Student Directory</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <script src="JAVE.js" defer></script>
+  <title>Student Directory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#6c8cff;--muted:#6b7280;--bg1:#f7f9fc;--bg2:#e9f1ff;--radius:16px;
+      font-family:'Inter',sans-serif;color-scheme:light;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      background:linear-gradient(180deg,var(--bg1),var(--bg2));
+      min-height:100vh;padding:0;margin:0;color:#1f2937;
+    }
+    header{
+      background:white;position:sticky;top:0;z-index:1000;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:16px 32px;box-shadow:0 4px 12px rgba(0,0,0,0.05);
+    }
+    header h1{font-size:24px;font-weight:700;color:var(--accent)}
+    nav a{
+      margin-left:16px;text-decoration:none;color:var(--muted);
+      font-weight:500;transition:color .2s;
+    }
+    nav a:hover{color:var(--accent)}
+    main{max-width:1000px;margin:40px auto;padding:0 20px}
+    section{
+      background:white;margin-bottom:40px;border-radius:var(--radius);
+      box-shadow:0 4px 20px rgba(0,0,0,0.05);
+      padding:24px;scroll-margin-top:80px;
+      animation:fadeIn 0.8s ease forwards;opacity:0;
+    }
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    h2{margin-bottom:16px;color:var(--accent)}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:12px;border-bottom:1px solid #e5e7eb;text-align:left}
+    th{background:#f1f5ff;font-weight:600}
+    tr:hover{background:#f9fbff}
+    footer{padding:20px;text-align:center;color:var(--muted);font-size:14px}
+    html{scroll-behavior:smooth}
+    .home-btn{
+      display:inline-block;margin:20px auto 0 auto;text-align:center;
+      background:var(--accent);color:white;text-decoration:none;padding:10px 20px;
+      border-radius:var(--radius);font-weight:600;box-shadow:0 6px 18px rgba(108,140,255,0.2);
+      transition:transform .2s, box-shadow .2s;
+    }
+    .home-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(108,140,255,0.3)}
+  </style>
 </head>
-
 <body>
   <header>
-    <div class="header-content">
-      <div class="logo-title">
-        <div class="title-container">
-          <h1>Student Directory — All Students</h1>
-          <p class="subtitle">Compact, readable list for mobile & desktop</p>
-        </div>
-        <img src="OIP.webp" alt="COLLEGE Logo" class="portal-logo">
-      </div>
-      <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:8px;">
-        <a href="index.html" class="hero-btn ghost">Back to Home</a>
-      </div>
-    </div>
+    <h1>Student Directory</h1>
+    <nav>
+      <a href="#science">Science</a>
+      <a href="#arts">Arts</a>
+      <a href="#commerce">Commerce</a>
+      <a href="#engineering">Engineering</a>
+      <a href="home.html" class="home-btn">🏠 Home</a>
+    </nav>
   </header>
-
   <main>
-    <section class="section-card centered">
-      <!-- Responsive card list: JS builds table on index; this page contains card view so no horizontal scroll -->
-      <div class="cards-grid">
-        <!-- Example student card - duplicate/extend for all students or use JS to render -->
-        <article class="student-card">
-          <img class="student-avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=RIFAT" alt="RIFAT">
-          <div class="student-meta">
-            <h3>RIFAT</h3>
-            <p class="muted">Roll: 21 • Section C</p>
-          </div>
-        </article>
-
-        <article class="student-card">
-          <img class="student-avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=GALIB" alt="GALIB">
-          <div class="student-meta">
-            <h3>GALIB</h3>
-            <p class="muted">Roll: 01 • Section C</p>
-          </div>
-        </article>
-
-        <!-- Add other students similarly or let JAVE.js render cards dynamically -->
-      </div>
+    <section id="science">
+      <h2>Science Department</h2>
+      <table>
+        <tr><th>Name</th><th>Roll</th><th>Year</th></tr>
+        <tr><td>GALIB </td><td>1</td><td>2025</td></tr>
+        <tr><td> TURJO</td><td>20</td><td>2025</td></tr>
+        <tr><td>MAJA</td><td>103</td><td>2025</td></tr>
+        <tr><td>ORIO</td><td>10</td><td>2025</td></tr>
+        <tr><td>TAKLA</td><td>13</td><td>2025</td></tr>
+        <tr><td>ARABI</td><td>SUCK</td><td>2025</td></tr>
+      </table>
+    </section>
+    <section id="arts">
+      <h2>Arts Department</h2>
+      <table>
+        <tr><th>Name</th><th>Roll</th><th>Year</th></tr>
+        <tr><td>NIGGA Kim</td><td>201</td><td>2025</td></tr>
+        <tr><td>Eva  HOLUD</td><td>202</td><td>2025</td></tr>
+        <tr><td>Frank MORUGGA</td><td>203</td><td>2025</td></tr>
+      </table>
+    </section>
+    <section id="commerce">
+      <h2>Commerce Department</h2>
+      <table>
+        <tr><th>Name</th><th>Roll</th><th>Year</th></tr>
+        <tr><td> ZANI </td><td>301</td><td>2025</td></tr>
+        <tr><td>SMALL LOTTA</td><td>302</td><td>2025</td></tr>
+        <tr><td>Isabella MONKEYYYYYY</td><td>303</td><td>2025</td></tr>
+      </table>
+    </section>
+    <section id="engineering">
+      <h2>Engineering Department</h2>
+      <table>
+        <tr><th>Name</th><th>Roll</th><th>Year</th></tr>
+        <tr><td>Jack KONG</td><td>401</td><td>2025</td></tr>
+        <tr><td>AM I Brown</td><td>402</td><td>2025</td></tr>
+        <tr><td>Liam SmithING TABLE</td><td>403</td><td>2025</td></tr>
+      </table>
     </section>
   </main>
-
-  <footer>
-    <div class="footer-content">
-      <p id="COPYRIGHT">&copy; 2024 Student Directory Portal</p>
-      <p class="creator">Developed by MD. AL KODOR RIFAT</p>
-    </div>
-  </footer>
+  <footer>© 2025 Student Directory MADE BY AL RIFAT</footer>
+  <script>
+    const sections=document.querySelectorAll('section');
+    const observer=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{if(e.isIntersecting)e.target.style.opacity=1});
+    },{threshold:0.1});
+    sections.forEach(s=>observer.observe(s));
+  </script>
 </body>
-
-</html>        </div>
-    </footer>
-</body>
-
 </html>
